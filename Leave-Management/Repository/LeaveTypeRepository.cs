@@ -3,6 +3,7 @@ using Leave_Management.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace Leave_Management.Repository
@@ -43,6 +44,12 @@ namespace Leave_Management.Repository
         public ICollection<LeaveType> GetEmployeesByLeaveType(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveTypes.Any(c => c.Id == id);
+            return exists;
         }
 
         public bool Save()

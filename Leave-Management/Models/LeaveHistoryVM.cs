@@ -11,6 +11,7 @@ namespace Leave_Management.Models
 {
     public class DetailLeaveHistoryVM
     {
+        [DisplayName("Leave History ID")]
         public int Id { get; set; }
 
         public EmployeeVM RequestingEmployee { get; set; }  //NB:  You don't add a reference to the Data.Models tables here.  This layer must not know about the DB
@@ -41,14 +42,21 @@ namespace Leave_Management.Models
         public string RequestingEmployeeId { get; set; }
 
         [Required(ErrorMessage = "Please select the Leave Start Date")]
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
+
+        [DisplayName("End Date")]
         [Required(ErrorMessage = "Please select the Leave End Date")]
         public DateTime EndDate { get; set; }
 
         [Required(ErrorMessage ="Please select the Leave Type")]
         public DetailsLeaveTypeVM LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
+
+        [DisplayName("Leave Types")]
         public IEnumerable<SelectListItem> LeaveTypes  { get; set; }
+
+        [DisplayName("Request Date")]
         public DateTime DateRequested { get; set; }
         
         //public DateTime DateActioned { get; set; }

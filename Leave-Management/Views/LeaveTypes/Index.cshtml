@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Leave_Management.Models.DetailsLeaveTypeVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Leave Types</h1>
+<hr />  
+<p>
+    <a asp-action="Create" class="btn btn-outline-info text-info"> <i class="fa fa-plus" aria-hidden="true"></i>  Create New</a>
+</p>
+<table id="tblData" class="table">               @*Added the id to implement the javascript for the table styling (datatable.net)*@
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-outline-info text-info" asp-route-id="@item.Id"><i class="fas fa-pencil-alt"></i> </a>   
+                    <a asp-action="Details" class="btn btn-outline-info text-info" asp-route-id="@item.Id"> <i class="fas fa-info-circle"></i> </a>   
+                    @*<a asp-action="Delete" asp-route-id="@item.Id">  Delete</a>*@
+                    <a asp-action="Delete" class="btn btn-outline-danger text-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this record?')"> <i class="fas fa-trash-alt"></i> </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{ 
+    <script>
+        @* Here we are referring back to the id of the table (tblData).  We pasted this javascript in site.js, so that it can be used for all tables
+            in the solution.  You just have to make sure you give each table the id=tblData. *@
+    </script>
+}

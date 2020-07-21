@@ -1,0 +1,40 @@
+﻿@model Leave_Management.Models.DetailsLeaveTypeVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />     @*I had to add this line, it didn't come automatically.  It is to be able to send the ID back on Save*@
+            <input type="hidden" asp-for="DateCreated" />     @*If we don't add this, the DateCreated gets lost.  The value is not carried over*@
+            
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="DateCreated" class="control-label"></label>
+            <input asp-for="DateCreated" class="form-control" />
+            <span asp-validation-for="DateCreated" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-info text-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="text-info" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
