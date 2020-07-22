@@ -6,11 +6,15 @@ using AutoMapper;
 using Leave_Management.Contracts;
 using Leave_Management.Data;
 using Leave_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leave_Management.Controllers
 {
+    [Authorize(Roles = "Administrator")]     //This ensures that someone cannot directly navigate to these pages if they are not logged in as Admin
+                                             //If Access should be different on different pages, you can put this above each Controller
+                                             //You can also allow multiple roles e.g. (Roles = "Administrator", "Employee")
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository _repo;                    //Dependency injection below
@@ -23,6 +27,7 @@ namespace Leave_Management.Controllers
         }
 
         // GET: LeaveTypesController
+        
         public ActionResult Index()
         {
             var leaveTypes = _repo.FindAll().ToList();                                          //This happens in the data layer.  Now you need to convert the results into the ViewModel

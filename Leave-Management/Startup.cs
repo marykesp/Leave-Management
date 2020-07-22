@@ -43,14 +43,18 @@ namespace Leave_Management
             //Add Service for Automapper
             services.AddAutoMapper(typeof(Maps));     //In the brackets, put the class you created with your mappings
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //In the Options section below you can set password rules, lockout rules and many other things.  We have removed the requirement for e-mail confirmation of the account
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()                   //We added this to be able to 'seed' the database with default roles when it is run for the first time
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+                              UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)  //Added this for the seeding of the database, to add default roles and Admin user
         {
             if (env.IsDevelopment())
             {
@@ -70,6 +74,8 @@ namespace Leave_Management
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            SeedData.Seed(userManager, roleManager);    //Method to create default roles and Admin user - see class SeedData.cs
 
             app.UseEndpoints(endpoints =>
             {
