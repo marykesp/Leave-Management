@@ -43,9 +43,9 @@
                                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">Manage</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item text-info" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a>
-                                        <a class="dropdown-item text-info" href="#">Leave Allocations</a>
+                                        <a class="dropdown-item text-info" asp-controller="LeaveAllocation" asp-action="Index">Leave Allocations</a>
                                         <a class="dropdown-item text-info" href="#">Leave Applications</a>
-                                        <a class="dropdown-item text-info" href="#">Employees</a>
+                                        <a class="dropdown-item text-info" asp-controller="LeaveAllocation" asp-action="ListEmployees">Employees</a>
                                     </div>
                                 </li>
                             }
@@ -68,7 +68,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>    @*Added this from the website datatable.net for the styling of the Leave Types table*@
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>    @*Added this from the website datatable.net for the styling of the tables*@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

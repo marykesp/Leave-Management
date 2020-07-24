@@ -1,0 +1,43 @@
+﻿@model Leave_Management.Models.SetLeaveAllocationVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Allocate Leave Types to each Employee</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table id="tblData" class="table">
+    <thead>
+        <tr>
+            <th>
+                Leave Types
+            </th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LeaveTypes)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @*Html.ActionLink("Allocate to Employees", "SetLeave", new { id = item.Id })*@
+                    <a asp-action="SetLeave" class="btn btn-outline-info text-info" asp-route-id="@item.Id" onclick="return confirm('Successfully updated')">Allocate to Employees  </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        @* Here we are referring back to the id of the table (tblData).  We pasted this javascript in site.js, so that it can be used for all tables
+            in the solution.  You just have to make sure you give each table the id=tblData. *@
+    </script>
+}

@@ -45,7 +45,8 @@ namespace Leave_Management
 
             //In the Options section below you can set password rules, lockout rules and many other things.  We have removed the requirement for e-mail confirmation of the account
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>()     //Trainer had to change this to Employee, but mine worked as is (module 31)
+                                                            //If you do it here, you have to replace all instances of 'IdentityUser' in the project
                 .AddRoles<IdentityRole>()                   //We added this to be able to 'seed' the database with default roles when it is run for the first time
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Leave_Management.Models.EmployeeVM>
+
+@{
+    ViewData["Title"] = "ListEmployees";
+}
+
+<h1>List Employees</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table  id="tblData" class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
+                    <a asp-action="Details" class="btn btn-outline-info text-info" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> View Details </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        @* Here we are referring back to the id of the table (tblData).  We pasted this javascript in site.js, so that it can be used for all tables
+            in the solution.  You just have to make sure you give each table the id=tblData. *@
+    </script>
+}

@@ -15,6 +15,9 @@ namespace Leave_Management.Models
         [DisplayName("Leave Type")]
         public string Name { get; set; }
 
+        [DisplayName("Default Allocation")]
+        public int DefaultDays { get; set; }
+
         [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
     }
@@ -26,6 +29,11 @@ namespace Leave_Management.Models
         [MaxLength(50, ErrorMessage = "The Leave Type Name cannot exceed 50 characters")]
         [DisplayName("Leave Type")]
         public string Name { get; set; }
+
+        [DisplayName("Default Allocation per Year")]
+        [Required(ErrorMessage = "Please capture the default number of days for this Leave Type")]
+        [Range(1,25,ErrorMessage = "Number must be between 1 and 25")]
+        public int DefaultDays { get; set; }
 
         [DisplayName("Date Created")]        
         public DateTime? DateCreated { get; set; }          //The question mark ensures that the user is not forced to capture this value
